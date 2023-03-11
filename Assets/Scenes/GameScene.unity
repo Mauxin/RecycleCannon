@@ -811,8 +811,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: eb062aa776e44954d94c4c2f76ebc148, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9731192cb293049b3a4ce9aed14c68ca, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb062aa776e44954d94c4c2f76ebc148, type: 3}
+--- !u!95 &835929640 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: eb062aa776e44954d94c4c2f76ebc148, type: 3}
+  m_PrefabInstance: {fileID: 835929639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1068538541 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
@@ -1168,6 +1177,7 @@ MonoBehaviour:
   _moveSpeed: 10
   _inputController: {fileID: 2069833235}
   _body: {fileID: 666435450}
+  _animator: {fileID: 835929640}
 --- !u!4 &1935701618
 Transform:
   m_ObjectHideFlags: 0

@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float _moveSpeed = 3f;
+    [SerializeField] float _moveSpeed = 1f;
     [SerializeField] FixedJoystick _inputController;
     [SerializeField] Rigidbody _body;
+    [SerializeField] Animator _animator;
 
     Vector3 movement = Vector3.zero;
     Quaternion rotation = Quaternion.identity;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        _animator.SetBool("Walking", movement == Vector3.zero);
         if (movement == Vector3.zero) return;
 
         _body.MovePosition(_body.position + movement * _moveSpeed * Time.deltaTime);
