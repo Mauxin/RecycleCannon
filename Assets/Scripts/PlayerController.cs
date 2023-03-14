@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        movement.x = _inputController.Horizontal;
-        movement.z = _inputController.Vertical;
+        movement.x = _inputController.Horizontal != 0 ?
+            _inputController.Horizontal : Input.GetAxisRaw("Horizontal");
+        movement.z = _inputController.Vertical != 0 ?
+            _inputController.Vertical : Input.GetAxisRaw("Vertical");
         rotation.eulerAngles =
             new Vector3(0,
             -Vector2.SignedAngle(Vector2.up, _inputController.Direction), 0);
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         _animator.SetBool("Walking", movement == Vector3.zero);
+        _animator.SetFloat("Speed", movement.magnitude*3);
         if (movement == Vector3.zero) return;
 
         _body.MovePosition(_body.position + movement * _moveSpeed * Time.deltaTime);
