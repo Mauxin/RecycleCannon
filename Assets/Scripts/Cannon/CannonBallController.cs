@@ -5,13 +5,13 @@ public class CannonBallController : MonoBehaviour
     [SerializeField] float _moveSpeed = 100f;
     [SerializeField] Rigidbody _body;
 
-    const string ENEMY_TAG = "Enemy";
-    const string ENVIRONMENT_TAG = "Environment";
-    const string CANNON_NAME = "Cannon";
+    public delegate void OnEnemyHit(GameObject hit);
+    public static event OnEnemyHit onEnemyHit;
 
     private void Start()
     {
-        var cannon = GameObject.Find(CANNON_NAME).GetComponent<CannonController>();
+        CannonController cannon = GameObject.Find(UtilsConstants.CANNON_NAME)
+            .GetComponent<CannonController>();
 
         _body.AddForce(new Vector3(cannon.Joystick.Horizontal, 0, cannon.Joystick.Vertical) *_moveSpeed,
             ForceMode.Impulse);
@@ -19,16 +19,18 @@ public class CannonBallController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag(ENEMY_TAG)) {
-            Destroy(collision.body.gameObject);
+        if (collision.collider.CompareTag(UtilsConstants.ENEMY_TAG)) {
+            onEnemyHit(collision.body.gameObject);
             Destroy(gameObject);
             return;
         }
 
-        if (collision.collider.CompareTag(ENVIRONMENT_TAG))
+        if (collision.collider.CompareTag(UtilsConstants.ENVIRONMENT_TAG))
         {
             Destroy(gameObject);
             return;
         }
     }
+
+
 }

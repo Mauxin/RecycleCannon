@@ -147,9 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d999458fc5ca645f7a6ba0e752682d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 2
+  _moveSpeed: 0.8
   _body: {fileID: 7322345626433688424}
   _animator: {fileID: 95471671811264702}
+  _trashBag: {fileID: 7121837085185067954, guid: d08c545243a3340a7a40dfa99ee6be7c, type: 3}
 --- !u!1 &1159745215084782
 GameObject:
   m_ObjectHideFlags: 0

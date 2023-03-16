@@ -11,13 +11,14 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         enemiesAlive.Clear();
-
+        EnemyController.onDie += onEnemyDead;
         StartCoroutine(SpawnEnemies());
     }
 
     void OnDestroy()
     {
         StopAllCoroutines();
+        EnemyController.onDie += onEnemyDead;
     }
 
     IEnumerator SpawnEnemies()
@@ -32,6 +33,15 @@ public class EnemySpawner : MonoBehaviour
             }
 
             yield return null;
+        }
+    }
+
+    void onEnemyDead(GameObject dead)
+    {
+        if (enemiesAlive.Contains(dead))
+        {
+            enemiesAlive.Remove(dead);
+            Destroy(dead);
         }
     }
 }

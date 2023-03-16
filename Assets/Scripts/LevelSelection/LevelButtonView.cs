@@ -40,7 +40,7 @@ namespace Scripts.LevelSelection
 
         void StartLevel()
         {
-            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+            SceneManager.LoadScene(UtilsConstants.GAME_SCENE, LoadSceneMode.Single);
         }
     }
 }

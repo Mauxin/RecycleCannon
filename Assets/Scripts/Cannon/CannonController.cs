@@ -8,10 +8,13 @@ public class CannonController : MonoBehaviour
     [SerializeField] GameObject _cannonBall;
 
     Quaternion rotation = Quaternion.identity;
-    Stopwatch fireTimer = new Stopwatch();
+    readonly Stopwatch fireTimer = new Stopwatch();
 
     public Rigidbody Body => _body;
     public FixedJoystick Joystick => _inputController;
+
+    public delegate void OnCannonFired();
+    public static event OnCannonFired onCannonFired;
 
     private void Awake()
     {
@@ -24,7 +27,6 @@ public class CannonController : MonoBehaviour
             new Vector3(0,
             -Vector2.SignedAngle(Vector2.up, _inputController.Direction), 0);
 
-
         VerifyFireInput();
     }
 
@@ -35,8 +37,8 @@ public class CannonController : MonoBehaviour
 
     void VerifyFireInput()
     {
-            if (Input.touchCount > 0 &
-            (fireTimer.ElapsedMilliseconds >= 1000 || !fireTimer.IsRunning) )
+            if (Input.touchCount > 0 &&
+            (fireTimer.ElapsedMilliseconds >= 1000 || !fireTimer.IsRunning))
             {
                 foreach (var touch in Input.touches)
                 {
@@ -51,9 +53,12 @@ public class CannonController : MonoBehaviour
 
     void FireCannon()
     {
+       if (AmmoController.IsOutOfAmmo) return;
+
         fireTimer.Reset();
 
         Instantiate(_cannonBall, transform.position, transform.rotation);
+        onCannonFired();
 
         fireTimer.Start();
     }

@@ -935,9 +935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d999458fc5ca645f7a6ba0e752682d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 1
+  _moveSpeed: 0.5
   _body: {fileID: 8261146042882789788}
   _animator: {fileID: 95528395651247964}
+  _trashBag: {fileID: 7599654637100761987, guid: 1cf7ffbb8eab84016a0627813d03e487, type: 3}
 --- !u!136 &9099227252191363613
 CapsuleCollider:
   m_ObjectHideFlags: 0
