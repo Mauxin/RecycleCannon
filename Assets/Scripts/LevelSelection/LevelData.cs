@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 namespace Scripts.LevelSelection
 {
     [CreateAssetMenu(menuName = "RecycleCannon/Level Data")]

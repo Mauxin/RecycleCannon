@@ -1,36 +1,38 @@
 using UnityEngine;
 
-public class CannonBallController : MonoBehaviour
+namespace Scripts.Cannon
 {
-    [SerializeField] float _moveSpeed = 100f;
-    [SerializeField] Rigidbody _body;
-
-    public delegate void OnEnemyHit(GameObject hit);
-    public static event OnEnemyHit onEnemyHit;
-
-    private void Start()
+    public class CannonBallController : MonoBehaviour
     {
-        CannonController cannon = GameObject.Find(UtilsConstants.CANNON_NAME)
-            .GetComponent<CannonController>();
+        [SerializeField] float _moveSpeed = 100f;
+        [SerializeField] Rigidbody _body;
 
-        _body.AddForce(new Vector3(cannon.Joystick.Horizontal, 0, cannon.Joystick.Vertical) *_moveSpeed,
-            ForceMode.Impulse);
-    }
+        public delegate void OnEnemyHit(GameObject hit);
+        public static event OnEnemyHit onEnemyHit;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag(UtilsConstants.ENEMY_TAG)) {
-            onEnemyHit(collision.body.gameObject);
-            Destroy(gameObject);
-            return;
-        }
-
-        if (collision.collider.CompareTag(UtilsConstants.ENVIRONMENT_TAG))
+        private void Start()
         {
-            Destroy(gameObject);
-            return;
+            CannonController cannon = GameObject.Find(UtilsConstants.CANNON_NAME)
+                .GetComponent<CannonController>();
+
+            _body.AddForce(new Vector3(cannon.Joystick.Horizontal, 0, cannon.Joystick.Vertical) * _moveSpeed,
+                ForceMode.Impulse);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.collider.CompareTag(UtilsConstants.ENEMY_TAG))
+            {
+                onEnemyHit(collision.body.gameObject);
+                Destroy(gameObject);
+                return;
+            }
+
+            if (collision.collider.CompareTag(UtilsConstants.ENVIRONMENT_TAG))
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
     }
-
-
 }

@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Menu
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b7e9f0790c6fb4af5beac848c48d16c5, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 21cf5510a37d24ae6aac4faad4001518, type: 3}
+  - {fileID: 21300000, guid: c4fa9e812e5bc45f594a722ee3e854d0, type: 3}
+  - {fileID: 21300000, guid: adf6f1c11c2264587b08fc3d82a9cfaf, type: 3}
+  - {fileID: 21300000, guid: 791b0612de1c143d29ef6c810e5792d4, type: 3}
+  - {fileID: 21300000, guid: 4b6385d5c2a334a539c7777e40a0f352, type: 3}
+  - {fileID: 21300000, guid: 9fd969194177840e5a86c34034b97313, type: 3}
+  - {fileID: 21300000, guid: 48ce67c9ff7b54abe88600d900c500a0, type: 3}
+  - {fileID: 21300000, guid: 2da408aa66e5141b09644c4d0f8dabf8, type: 3}
+  - {fileID: 21300000, guid: b6b742cb914bb416884e03cd3e691bef, type: 3}
+  - {fileID: 21300000, guid: 417acb3dec2cc478391c0b679766886a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - trashcan-g78e482c64_640
+  - DiamondIcon
+  - trash_bag
+  - brazil-g3c3c8eb90_1280
+  - spain-flag
+  - arrow
+  - CoinIcon
+  - GameIcon
+  - united-kingdom-g897280eb6_1280
+  - papertexture
+  m_RenderDataMap: {}
+  m_Tag: Menu
+  m_IsVariant: 0

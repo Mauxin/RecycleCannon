@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 namespace Scripts.LevelSelection
 {
     public class LevelButtonView : MonoBehaviour
