@@ -31,7 +31,7 @@ public class GameOverPopupController : MonoBehaviour
 
     void GoToMenu()
     {
-        SceneManager.LoadScene(UtilsConstants.GAME_SCENE, LoadSceneMode.Single);
+        SceneManager.LoadScene(UtilsConstants.MENU_SCENE, LoadSceneMode.Single);
     }
 
     void OnGameOver()
