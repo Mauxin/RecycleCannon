@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99ca10df499e432ca080de0cbf2bbe4, type: 3}
   m_Name: LevelData_27
   m_EditorClassIdentifier: 
-  levelNumber: 27
+  _levelNumber: 27
+  _spawnPositions: []
+  _spawnPrefab: {fileID: 0}
+  _trashPositions: []
+  _startTrashBags: []
+  _hordeDurationSeconds: 0
+  _hordeIntervalSeconds: 0
+  _hordeAmount: 0

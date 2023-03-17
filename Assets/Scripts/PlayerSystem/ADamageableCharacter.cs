@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Scripts.PlayerSystem
@@ -20,7 +21,24 @@ namespace Scripts.PlayerSystem
         {
             if (collision.collider.CompareTag(UtilsConstants.ENEMY_TAG))
             {
+                StartCoroutine(DealDamage());
+            }
+        }
+
+        private void OnCollisionExit(Collision collision)
+        {
+            if (collision.collider.CompareTag(UtilsConstants.ENEMY_TAG))
+            {
+                StopCoroutine(DealDamage());
+            }
+        }
+
+        IEnumerator DealDamage()
+        {
+            while (true)
+            {
                 TakeDamage();
+                yield return new WaitForSeconds(1);
             }
         }
 
@@ -30,7 +48,7 @@ namespace Scripts.PlayerSystem
             float percentage = (float)currentLife / (float)_maxLives;
             LifeUpdate(percentage);
 
-            if (currentLife < 0)
+            if (currentLife <= 0)
             {
                 Destroy(gameObject);
                 Died();

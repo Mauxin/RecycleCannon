@@ -106,7 +106,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &4069749932804127845
 CapsuleCollider:
@@ -148,11 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d999458fc5ca645f7a6ba0e752682d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 0.8
   _body: {fileID: 7322345626433688424}
-  _animator: {fileID: 95471671811264702}
-  _trashBag: {fileID: 7121837085185067954, guid: d08c545243a3340a7a40dfa99ee6be7c, type: 3}
   _lifeSlider: {fileID: 502535228473732006}
+  _enemyData: {fileID: 11400000, guid: 231aed611f16e44c5b9b26e9b9a0f4de, type: 2}
 --- !u!1 &1159745215084782
 GameObject:
   m_ObjectHideFlags: 0

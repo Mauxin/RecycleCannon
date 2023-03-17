@@ -908,7 +908,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &357658520451556605
 CapsuleCollider:
@@ -936,11 +936,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d999458fc5ca645f7a6ba0e752682d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 0.5
   _body: {fileID: 8261146042882789788}
-  _animator: {fileID: 95528395651247964}
-  _trashBag: {fileID: 7599654637100761987, guid: 1cf7ffbb8eab84016a0627813d03e487, type: 3}
   _lifeSlider: {fileID: 663569873012569212}
+  _enemyData: {fileID: 11400000, guid: 1ef533d04b6c545d4b6d9ab5941144ac, type: 2}
 --- !u!136 &9099227252191363613
 CapsuleCollider:
   m_ObjectHideFlags: 0

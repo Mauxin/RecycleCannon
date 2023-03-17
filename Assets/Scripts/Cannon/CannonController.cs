@@ -8,6 +8,7 @@ namespace Scripts.Cannon
         [SerializeField] FixedJoystick _inputController;
         [SerializeField] Rigidbody _body;
         [SerializeField] GameObject _cannonBall;
+        [SerializeField] Transform _shootStart;
 
         Quaternion rotation = Quaternion.identity;
         readonly Stopwatch fireTimer = new Stopwatch();
@@ -35,17 +36,29 @@ namespace Scripts.Cannon
         void FixedUpdate()
         {
             _body.MoveRotation(rotation);
+
+            AimController.Instance.DrawAim(
+                new Vector3(_inputController.Horizontal, 0, _inputController.Vertical) * 2500,
+                1,
+                _shootStart.position);
+
         }
 
         void VerifyFireInput()
         {
-            if (Input.touchCount > 0 &&
+            if ((Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Space)) &&
             (fireTimer.ElapsedMilliseconds >= 1000 || !fireTimer.IsRunning))
             {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    FireCannon();
+                    return;
+                }
+
                 foreach (var touch in Input.touches)
                 {
                     if (touch.position.x < Screen.width / 2
-                        & touch.position.y > Screen.height / 3)
+                        && touch.position.y > Screen.height / 3)
                     {
                         FireCannon();
                     }
@@ -59,7 +72,7 @@ namespace Scripts.Cannon
 
             fireTimer.Reset();
 
-            Instantiate(_cannonBall, transform.position, transform.rotation);
+            Instantiate(_cannonBall, _shootStart.position, _shootStart.rotation);
             onCannonFired();
 
             fireTimer.Start();

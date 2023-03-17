@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using Scripts.Cannon;
+using Scripts.HordeSystem;
 using Scripts.PlayerSystem;
 using TMPro;
 using UnityEngine;
@@ -14,6 +16,14 @@ namespace Scripts.GameUI
         [SerializeField] Text​Mesh​Pro​UGUI _recycledAmmoCount;
         [SerializeField] GameObject _organicAmmoIndicator;
         [SerializeField] GameObject _recycleAmmoIndicator;
+        [SerializeField] Text​Mesh​Pro​UGUI _hordeText;
+        [SerializeField] Text​Mesh​Pro​UGUI _hordeTimerText;
+
+        const string HORDE_INTERVAL = "NEXT IN:";
+        const string HORDE_RUNNING = "HORDE ";
+
+        Stopwatch hordeTimer = new Stopwatch();
+        int currentHordeTime = -1;
 
         void Start()
         {
@@ -21,12 +31,24 @@ namespace Scripts.GameUI
             CityWallController.onLifeUpdate += UpdateWallLife;
             AmmoController.onAmmoUpdateAmount += UpdateAmmo;
             AmmoController.onAmmoTypeChange += UpdateSelectedAmmo;
+            HordeController.onHordeStart += UpdateHorde;
+        }
+
+        private void Update()
+        {
+            if (hordeTimer.IsRunning && currentHordeTime > -1)
+            {
+                _hordeTimerText.text = RemainingHordeTime(currentHordeTime).ToString();
+            }
         }
 
         void OnDestroy()
         {
             PlayerController.onLifeUpdate -= UpdatePlayerLife;
             CityWallController.onLifeUpdate -= UpdateWallLife;
+            AmmoController.onAmmoUpdateAmount -= UpdateAmmo;
+            AmmoController.onAmmoTypeChange -= UpdateSelectedAmmo;
+            HordeController.onHordeStart -= UpdateHorde;
         }
 
         void UpdatePlayerLife(float percentage)
@@ -66,6 +88,19 @@ namespace Scripts.GameUI
         void UpdateRecycledAmmo(int amount)
         {
             _recycledAmmoCount.text = amount.ToString();
+        }
+
+        void UpdateHorde(bool isInterval, int duration, int horde)
+        {
+            _hordeText.text = isInterval ? HORDE_INTERVAL : HORDE_RUNNING + horde;
+            currentHordeTime = duration;
+            hordeTimer.Reset();
+            hordeTimer.Start();
+        }
+
+        int RemainingHordeTime(int maxTime)
+        {
+            return Mathf.FloorToInt(maxTime - (hordeTimer.ElapsedMilliseconds / 1000));
         }
     }
 }

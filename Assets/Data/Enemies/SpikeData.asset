@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4644f5ff51c4a4c9581fd608ed805105, type: 3}
+  m_Name: SpikeData
+  m_EditorClassIdentifier: 
+  _moveSpeed: 0.5
+  _trashDropList:
+  - {fileID: 7121837085185067954, guid: d08c545243a3340a7a40dfa99ee6be7c, type: 3}
+  - {fileID: 5114492310111074902, guid: b8a2d28de579a41d2926805307c7fe05, type: 3}
+  _deadlyAmmo: 0
+  _enemyPrefab: {fileID: 1837317425425208, guid: 8ca70c5a23195424892d00f39792c55b, type: 3}

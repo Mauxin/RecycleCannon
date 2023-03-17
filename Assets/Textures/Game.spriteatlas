@@ -55,6 +55,7 @@ SpriteAtlas:
   - {fileID: -2413806693520163455, guid: 704486a1a8a5b4a6fbaa3b9d9fd18c89, type: 3}
   - {fileID: 21300000, guid: 613a69a1d3e544156b4aeda4e159c76f, type: 3}
   - {fileID: 21300000, guid: 33bfe894dc23f429b93ff8531fc5b83c, type: 3}
+  - {fileID: 21300000, guid: 9b73f435472724eb79bb38e99025139a, type: 3}
   - {fileID: 21300000, guid: 7ffe537689b8a48678b5dc862e92fa92, type: 3}
   - {fileID: 21300000, guid: e86649ac9eadf4b3ea25481e570e424c, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -63,6 +64,7 @@ SpriteAtlas:
   - Circle
   - swap
   - user
+  - dashAim
   - castle
   - road
   m_RenderDataMap: {}

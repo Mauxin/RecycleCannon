@@ -73,16 +73,21 @@ namespace Scripts.PlayerSystem
 
         void VerifyCatchInput(Transform trashBag)
         {
-            if (Input.touchCount > 0 && carriedTrashBag == null)
+            if ((Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Return))
+                && carriedTrashBag == null)
             {
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    CatchTrash(trashBag);
+                    return;
+                }
+
                 foreach (var touch in Input.touches)
                 {
                     if (touch.position.x > Screen.width / 2
                         & touch.position.y > Screen.height / 3)
                     {
-                        trashBag.SetParent(_trashAttach);
-                        trashBag.localPosition = Vector3.zero;
-                        carriedTrashBag = trashBag.gameObject;
+                            CatchTrash(trashBag);
                     }
                 }
             }
@@ -90,8 +95,15 @@ namespace Scripts.PlayerSystem
 
         void VerifyThrowInput(Transform trashCan)
         {
-            if (Input.touchCount > 0 && carriedTrashBag != null)
+            if ((Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Return))
+                && carriedTrashBag != null)
             {
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    ThrowTrash(trashCan.gameObject);
+                    return;
+                }
+
                 foreach (var touch in Input.touches)
                 {
                     if (touch.position.x > Screen.width / 2
@@ -108,6 +120,8 @@ namespace Scripts.PlayerSystem
             var trashBin = trashCan.GetComponent<TrashController>();
             var trash = carriedTrashBag.GetComponent<TrashController>();
 
+            if (trash == null || trashBin == null) return;
+
             if (trashBin.Type == trash.Type)
             {
                 onTashDelivered(trash.Type);
@@ -119,6 +133,13 @@ namespace Scripts.PlayerSystem
             {
                 Debug.Log("Wrong Trash Can");
             }
+        }
+
+        void CatchTrash(Transform trashBag)
+        {
+            trashBag.SetParent(_trashAttach);
+            trashBag.localPosition = Vector3.zero;
+            carriedTrashBag = trashBag.gameObject;
         }
 
         protected override void Died()

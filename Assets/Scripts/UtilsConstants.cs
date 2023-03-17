@@ -11,6 +11,7 @@ public static class UtilsConstants
 
     public const string WALL_NAME = "CityWall";
     public const string CANNON_NAME = "Cannon";
+    public const string HORDE_NAME = "HordeController";
 
     public const string PLAYER_WALK_ANIMATION = "Walking";
     public const string PLAYER_SPEED_ANIMATION = "Speed";

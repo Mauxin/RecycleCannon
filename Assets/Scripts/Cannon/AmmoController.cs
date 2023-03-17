@@ -21,9 +21,10 @@ namespace Scripts.Cannon
 
         int organicAmount = -1;
         int recycleAmount = -1;
-        AmmoType selectedType = AmmoType.Organic;
 
+        public static AmmoType SelectedType = AmmoType.Organic;
         public static bool IsOutOfAmmo = true;
+
 
         public delegate void OnAmmoTypeSelectedChange(AmmoType type);
         public static event OnAmmoTypeSelectedChange onAmmoTypeChange;
@@ -49,15 +50,15 @@ namespace Scripts.Cannon
 
         void SwapAmmoType()
         {
-            switch (selectedType)
+            switch (SelectedType)
             {
                 case AmmoType.Organic:
-                    selectedType = AmmoType.Recycle;
+                    SelectedType = AmmoType.Recycle;
                     _buttonBg.color = RECYCLE_ORANGE;
                     onAmmoTypeChange(AmmoType.Recycle);
                     break;
                 case AmmoType.Recycle:
-                    selectedType = AmmoType.Organic;
+                    SelectedType = AmmoType.Organic;
                     _buttonBg.color = ORGANIC_GREEN;
                     onAmmoTypeChange(AmmoType.Organic);
                     break;
@@ -68,7 +69,7 @@ namespace Scripts.Cannon
 
         void spentAmmo()
         {
-            switch (selectedType)
+            switch (SelectedType)
             {
                 case AmmoType.Organic:
                     organicAmount--;
@@ -103,7 +104,7 @@ namespace Scripts.Cannon
 
         void UpdateOutOfAmmo()
         {
-            IsOutOfAmmo = selectedType == AmmoType.Organic ?
+            IsOutOfAmmo = SelectedType == AmmoType.Organic ?
                         organicAmount <= 0 : recycleAmount <= 0;
         }
     }

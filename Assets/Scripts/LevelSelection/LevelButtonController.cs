@@ -11,8 +11,8 @@ namespace Scripts.LevelSelection
         public void SetupLevelButton(LevelData level, GameObject parent)
         {
             levelData = level;
-            _buttonView.SetupView(levelData);
-            GameObject.Instantiate(_buttonView, parent.transform);
+            var button = GameObject.Instantiate(_buttonView, parent.transform);
+            button.SetupView(levelData);
         }
     }
 }

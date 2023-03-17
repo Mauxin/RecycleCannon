@@ -1,3 +1,4 @@
+using System.Collections;
 using Scripts.Cannon;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,11 +7,9 @@ namespace Scripts.Enemies
 {
     public class EnemyController : MonoBehaviour
     {
-        [SerializeField] float _moveSpeed = 1f;
         [SerializeField] Rigidbody _body;
-        [SerializeField] Animator _animator;
-        [SerializeField] GameObject _trashBag;
         [SerializeField] Slider _lifeSlider;
+        [SerializeField] EnemyData _enemyData;
 
         const int MAX_LIVES = 3;
 
@@ -30,11 +29,28 @@ namespace Scripts.Enemies
             wall = GameObject.Find(UtilsConstants.WALL_NAME);
             followingTransform = wall.transform;
             CannonBallController.onEnemyHit += damageTaken;
+            StartCoroutine(DropRandomTrash());
         }
 
         private void OnDestroy()
         {
-            CannonBallController.onEnemyHit -= damageTaken;
+            StopAllCoroutines();
+            CannonBallController.onEnemyHit -= damageTaken;   
+        }
+
+        private void Update()
+        {
+            if (followingTransform == null) return;
+
+            movement = FollowDirection();
+            rotation = Quaternion.LookRotation(FollowDirection());
+        }
+
+        void FixedUpdate()
+        {
+            _body.MovePosition(_body.position +
+                movement * _enemyData.MoveSpeed * Time.deltaTime);
+            _body.MoveRotation(rotation);
         }
 
         void OnTriggerStay(Collider other)
@@ -51,18 +67,35 @@ namespace Scripts.Enemies
             followingTransform = wall.transform;
         }
 
-        private void Update()
+        void damageTaken(GameObject hit)
         {
-            if (followingTransform == null) return;
+            if (gameObject != hit) return;
+            if (AmmoController.SelectedType != _enemyData.DeadlyAmmo) return;
 
-            movement = FollowDirection();
-            rotation = Quaternion.LookRotation(FollowDirection());
+            currentLives--;
+            _lifeSlider.value = (float)currentLives / (float)MAX_LIVES;
+            _lifeSlider.gameObject.SetActive(true);
+
+            if (currentLives <= 0)
+            {
+                DropTrash();
+                onDie(gameObject);
+            }
         }
 
-        void FixedUpdate()
+        IEnumerator DropRandomTrash()
         {
-            _body.MovePosition(_body.position + movement * _moveSpeed * Time.deltaTime);
-            _body.MoveRotation(rotation);
+            while (true)
+            {
+                yield return new WaitForSeconds(Random.Range(30, 36));
+                DropTrash();
+            }
+        }
+
+        void DropTrash()
+        {
+            Instantiate(_enemyData.RandomTrashBag(),
+                transform.position, transform.rotation);
         }
 
         Vector3 FollowDirection()
@@ -70,22 +103,6 @@ namespace Scripts.Enemies
             if (followingTransform == null) return Vector3.zero;
 
             return (followingTransform.position - _body.position).normalized;
-        }
-
-        void damageTaken(GameObject hit)
-        {
-
-            if (gameObject != hit) return;
-
-            currentLives--;
-            _lifeSlider.value = (float)currentLives / (float)MAX_LIVES;
-            _lifeSlider.gameObject.SetActive(true);
-
-            if (currentLives < 0)
-            {
-                Instantiate(_trashBag, transform.position, transform.rotation);
-                onDie(gameObject);
-            }
         }
     }
 }

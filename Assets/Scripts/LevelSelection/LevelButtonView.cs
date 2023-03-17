@@ -1,6 +1,5 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Scripts.LevelSelection
@@ -17,6 +16,7 @@ namespace Scripts.LevelSelection
         {
             levelData = data;
             SetupText();
+            SetupUnlockedLevel();
             SetupCompletedIcon();
         }
 
@@ -31,15 +31,21 @@ namespace Scripts.LevelSelection
                 "0" + levelData.LevelNumber : levelData.LevelNumber.ToString();
         }
 
+        void SetupUnlockedLevel()
+        {
+            if (levelData.LevelNumber == 1) levelData.UnlockLevel();
+
+            _selectionButton.interactable = levelData.IsLevelUnlocked();
+        }
+
         void SetupCompletedIcon()
         {
-            _completedIcon.SetActive(
-                SaveSystem.SaveSystem.GetSavedBool(levelData.CompletedKey));
+            _completedIcon.SetActive(levelData.IsLevelCompleted());
         }
 
         void StartLevel()
         {
-            SceneManager.LoadScene(UtilsConstants.GAME_SCENE, LoadSceneMode.Single);
+            LevelBuilder.Instance.BuildLevel(levelData);
         }
     }
 }
