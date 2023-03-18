@@ -44,6 +44,7 @@ namespace Scripts.LevelSelection
         public void CompleteLevel()
         {
             levelData.CompleteLevel();
+            levelData.UnlockNextLevel();
         }
     }
 }

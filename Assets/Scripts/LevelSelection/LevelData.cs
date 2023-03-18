@@ -24,6 +24,7 @@ namespace Scripts.LevelSelection
 
         const string LOCKED_BASE_KEY = "level_locked_key";
         public string LockedKey => _levelNumber + LOCKED_BASE_KEY;
+        public string NextLevelLockedKey => (_levelNumber+1) + LOCKED_BASE_KEY;
 
         const string COMPLETE_BASE_KEY = "level_completed_key";
         public string CompletedKey => _levelNumber + COMPLETE_BASE_KEY;
@@ -42,6 +43,11 @@ namespace Scripts.LevelSelection
         public void UnlockLevel()
         {
             SaveSystem.SaveSystem.SaveBool(LockedKey, true);
+        }
+
+        public void UnlockNextLevel()
+        {
+            SaveSystem.SaveSystem.SaveBool(NextLevelLockedKey, true);
         }
 
         public bool IsLevelCompleted()

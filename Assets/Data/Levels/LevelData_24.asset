@@ -13,10 +13,19 @@ MonoBehaviour:
   m_Name: LevelData_24
   m_EditorClassIdentifier: 
   _levelNumber: 24
-  _spawnPositions: []
-  _spawnPrefab: {fileID: 0}
-  _trashPositions: []
-  _startTrashBags: []
-  _hordeDurationSeconds: 0
-  _hordeIntervalSeconds: 0
-  _hordeAmount: 0
+  _spawnPositions:
+  - {x: 0, y: 0, z: 30}
+  _spawnPrefab: {fileID: 8886550113115923130, guid: 425c13d88ab0f49f1a8dcc56faaeb1e0, type: 3}
+  _trashPositions:
+  - {x: -3.6, y: -0.3, z: 1.91}
+  - {x: -5.04, y: -0.3, z: 11.79}
+  - {x: 2.98, y: -0.3, z: 15.73}
+  - {x: 5.07, y: -0.3, z: 4.78}
+  _startTrashBags:
+  - {fileID: 7121837085185067954, guid: d08c545243a3340a7a40dfa99ee6be7c, type: 3}
+  - {fileID: 7599654637100761987, guid: 1cf7ffbb8eab84016a0627813d03e487, type: 3}
+  - {fileID: 5114492310111074902, guid: b8a2d28de579a41d2926805307c7fe05, type: 3}
+  - {fileID: 7599654637100761987, guid: 1cf7ffbb8eab84016a0627813d03e487, type: 3}
+  _hordeDurationSeconds: 30
+  _hordeIntervalSeconds: 7
+  _hordeAmount: 5

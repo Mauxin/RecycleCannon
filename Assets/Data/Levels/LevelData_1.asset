@@ -26,6 +26,6 @@ MonoBehaviour:
   - {fileID: 7599654637100761987, guid: 1cf7ffbb8eab84016a0627813d03e487, type: 3}
   - {fileID: 5114492310111074902, guid: b8a2d28de579a41d2926805307c7fe05, type: 3}
   - {fileID: 7599654637100761987, guid: 1cf7ffbb8eab84016a0627813d03e487, type: 3}
-  _hordeDurationSeconds: 40
-  _hordeIntervalSeconds: 10
+  _hordeDurationSeconds: 30
+  _hordeIntervalSeconds: 7
   _hordeAmount: 5
